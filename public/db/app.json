@@ -1,0 +1,20 @@
+{
+  "tables": [
+      {
+          "number": 1,
+          "status": "free"
+      },
+      {
+          "number": 1,
+          "status": "free"
+      },
+      {
+          "number": 1,
+          "status": "free"
+      },
+      {
+          "number": 1,
+          "status": "free"
+      }
+  ]
+}
