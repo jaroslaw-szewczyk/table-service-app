@@ -1,14 +1,14 @@
-
-
 const createActionName = actionName => `app/${actionName}`;
 const UPDATE_TABLES_FROM_SERVER = createActionName('UPDATE_TABLES_FROM_SERVER');
 
+export const gettAllTables = (state => state);
+
 export const updateTablesFromServer = payload => ({type: UPDATE_TABLES_FROM_SERVER, payload});
 export const fetchTables = () => {
-  return (dispach) => {
+  return (dispatch) => {
     fetch('http://localhost:3131/tables')
       .then(res => res.json())
-      .then(tables => dispach(updateTablesFromServer(tables)));
+      .then(tables => dispatch(updateTablesFromServer(tables)));
   }
 }
 

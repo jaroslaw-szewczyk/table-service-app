@@ -4,7 +4,7 @@ import initialState from './initialState';
 import updateTablesReducer from './updateTablesReducer';
 
 const subreducers = {
-  updateTables: updateTablesReducer,
+  tables: updateTablesReducer,
 }
 
 const reducer = combineReducers(subreducers);
