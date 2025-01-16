@@ -1,17 +1,23 @@
 
-//ściąga z projektu to do
-// const createActionName = actionName => `app/search/${actionName}`;
-// const SEARCH = createActionName('SEARCH');
 
-// export const updateSearchiString = payload => ({type: SEARCH, payload});
+const createActionName = actionName => `app/${actionName}`;
+const UPDATE_TABLES_FROM_SERVER = createActionName('UPDATE_TABLES_FROM_SERVER');
 
+export const updateTablesFromServer = payload => ({type: UPDATE_TABLES_FROM_SERVER, payload});
+export const fetchTables = () => {
+  return (dispach) => {
+    fetch('http://localhost:3131/tables')
+      .then(res => res.json())
+      .then(tables => dispach(updateTablesFromServer(tables)));
+  }
+}
 
-const updateTablesReducer = (statePart, action) => {
+const updateTablesReducer = (state={}, action) => {
   switch(action.type) {
-    case TEST:
-      return action.payload;
+    case UPDATE_TABLES_FROM_SERVER:
+      return [...action.payload];
     default:
-      return statePart;
+      return state;
   };
 };
 
