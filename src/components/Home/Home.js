@@ -15,6 +15,7 @@ const Home = () => {
           key={table.number} 
           number={table.number}
           status={table.status}
+          tableId={table.id}
         />
       ))}
     </div>

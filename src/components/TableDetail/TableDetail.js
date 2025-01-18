@@ -1,34 +1,32 @@
 import React from "react";
 import styles from "./TableDetail.module.scss";
 import AppButton from "../Button/AppButton";
+import NumberForm from "../NumberForm/NumberForm";
+import SelectForm from "../SelectForm/SelectForm";
+
+import { useParams } from "react-router-dom";
 
 const TableDetail = () => {
+
+  const { tableId } = useParams();
+
   return(
-    <form className={`${styles.formCon}`}>
-      <h2>Table 1</h2>
-      <div className="d-flex align-items-center">
+    <form >
+      <h2>Table {tableId}</h2>
+      <div className={`d-flex align-items-center ${styles.formCon}`}>
         <p>Status: </p>
-        <select className={`form-select ${styles.size}`} aria-label="Default select example">
-          <option value="1" selected>Free</option>
-          <option value="2">Busy</option>
-          <option value="3">Reserved</option>
-          <option value="3">Cleaning</option>
-        </select>
+        <SelectForm />
       </div>
-      <div className="d-flex align-items-center">
+      <div className={`d-flex align-items-center ${styles.formCon}`}>
         <p>People: </p>  
-        <input type="number" 
-          id="quantity" 
-          name="quantity" 
-          className="form-control" 
-          min="1" 
-          max="5" 
-          placeholder="0" 
-        />  
+        <NumberForm />
+        <span>/</span>
+        <NumberForm />
       </div>
-      <div className="d-flex align-items-center">
+      <div className={`d-flex align-items-center ${styles.formCon}`}>
         <p>Bill: </p>
-        
+        <span className={styles.billSpan}>$:</span>
+        <NumberForm />
       </div>
       <AppButton>Update</AppButton>
     </form>
