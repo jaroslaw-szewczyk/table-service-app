@@ -19,8 +19,8 @@ const App = () => {
 
   return (
    <>
-    <AppNav />
     <Container>
+      <AppNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/table/:tableId" element={<TableDetail/>} />
