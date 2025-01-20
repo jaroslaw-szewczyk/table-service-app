@@ -6,11 +6,16 @@ import SelectForm from "../SelectForm/SelectForm";
 import Home from "../Home/Home";
 
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTable } from "../../redux/updateTablesReducer";
+
 
 const TableDetail = () => {
 
+  const dispatch = useDispatch();
+
   const tables = useSelector(state => state.tables);
+
   const { tableId } = useParams();
   const [status, setStatus] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState(0);
@@ -78,12 +83,11 @@ const TableDetail = () => {
     }
   }
   
-  const handleButton = () => {
-    console.log('NewStatus', status);
-    console.log('NumberOfPeople', numberOfPeople);
-    console.log('TableSpaces', tableSpaces);
-    console.log('Bill', bill);
-  }
+  const handleButton = (e) => {
+    e.preventDefault();
+    const payload = { tableId, status, numberOfPeople, tableSpaces, bill };
+    dispatch(updateTable(payload));
+  };
 
   return(
     <form >
