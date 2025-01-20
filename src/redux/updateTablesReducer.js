@@ -22,13 +22,28 @@ export const fetchTables = () => {
   }
 }
 
+export const updateTableRequest = (order) => {
+  return(dispatch) => {
+    const options ={
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(order),
+    };
+    
+    fetch(`http://localhost:3131/tables/${order.id}`, options)
+      .then(() => dispatch(updateTable(order)));
+  }
+}
+
 const updateTablesReducer = (state = [], action) => {
   switch(action.type) {
     case UPDATE_TABLES_FROM_SERVER:
       return [...action.payload];
     case UPDATE_TABLE:
       return state.map(table =>
-        table.id === Number(action.payload.tableId)
+        table.id === action.payload.id
           ? { ...table, ...action.payload }
           : table
         );

@@ -1,36 +1,39 @@
 {
   "tables": [
-      {
-        "id": 1,
-        "number": 1,
-        "status": "free",
-        "people": 0,
-        "tableSpace": 2,
-        "bill": 0
-      },
-      {
-        "id": 2,
-        "number": 2,
-        "status": "free",
-        "people": 0,
-        "tableSpace": 3,
-        "bill": 0
-      },
-      {
-        "id": 3,
-        "number": 3,
-        "status": "free",
-        "people": 0,
-        "tableSpace": 3,
-        "bill": 0
-      },
-      {
-        "id": 4,
-        "number": 4,
-        "status": "free",
-        "people": 0,
-        "tableSpace": 4,
-        "bill": 0
-      }
+    {
+      "id": 1,
+      "number": 1,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 2,
+      "bill": 0,
+      "tableSpaces": 2
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 3,
+      "bill": 0,
+      "tableSpaces": 3
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 10,
+      "bill": 0,
+      "tableSpaces": 10
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 4,
+      "bill": 0
+    }
   ]
 }

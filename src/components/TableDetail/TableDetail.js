@@ -5,31 +5,32 @@ import NumberForm from "../NumberForm/NumberForm";
 import SelectForm from "../SelectForm/SelectForm";
 import Home from "../Home/Home";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTable } from "../../redux/updateTablesReducer";
+import { updateTableRequest } from "../../redux/updateTablesReducer";
 
 
 const TableDetail = () => {
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const tables = useSelector(state => state.tables);
 
   const { tableId } = useParams();
   const [status, setStatus] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState(0);
+  const [people,setPeople] = useState(0);
   const [tableSpaces, setTableSpaces] = useState(0);
   const [bill, setBill] = useState(0);
 
   const table = tables.find((table) => table.id === parseInt(tableId));
+
 
   useEffect(() => {
     if(!table) {
       return;
     }
     
-    setNumberOfPeople(table.people);
+    setPeople(table.people);
     setTableSpaces(table.tableSpace);
     setStatus(table.status);
     setBill(table.bill);
@@ -47,13 +48,13 @@ const TableDetail = () => {
     const number = parseInt(newNumberOfPeople);
 
     if (number < 0) {
-      setNumberOfPeople(0);
+     setPeople(0);
+    } else if(number > 10){
+      setPeople(10);
     } else if (number > tableSpaces) {
-      setNumberOfPeople(tableSpaces);
-    } else if (number > 10) {
-      setNumberOfPeople(10);
+     setPeople(tableSpaces);
     } else {
-      setNumberOfPeople(number);
+     setPeople(number);
     }
   };
 
@@ -67,27 +68,30 @@ const TableDetail = () => {
     } else {
       setTableSpaces(spaces);
 
-      if (numberOfPeople > spaces) {
-        setNumberOfPeople(spaces);
+      if (people > spaces) {
+       setPeople(spaces);
       }
     }
   };
 
   const handleBill = (newBill) => {
-
-    if (newBill < 0) {
-      const correctBill = parseInt(newBill.replace('-', ''));
-      setBill(correctBill);
-    } else {
-      setBill(parseInt(newBill));
-    }
+    setBill(parseInt(newBill));
   }
   
   const handleButton = (e) => {
     e.preventDefault();
-    const payload = { tableId, status, numberOfPeople, tableSpaces, bill };
-    dispatch(updateTable(payload));
+    let order ={};
+
+    if(status === 'cleanig' || status === 'free') {
+      order = { id: parseInt(tableId), status, people: 0, bill: 0 };
+    } else {
+      order = { id: parseInt(tableId), status, people, tableSpaces, bill };
+    }
+    dispatch(updateTableRequest(order));
+    navigate('/');
   };
+
+  
 
   return(
     <form >
@@ -98,16 +102,16 @@ const TableDetail = () => {
       </div>
       <div className={`d-flex align-items-center ${styles.formCon}`}>
         <p>People: </p>  
-        <NumberForm amount={table.people} onChange={(e)=> handleChangePeopleAmount(e.target.value)}/>
+        <NumberForm amount={people} onChange={(e)=> handleChangePeopleAmount(e.target.value)} max={10}/>
         <span>/</span>
-        <NumberForm amount={table.tableSpace} onChange={(e)=> handleTableSpacesChange(e.target.value)}/>
+        <NumberForm amount={tableSpaces} onChange={(e)=> handleTableSpacesChange(e.target.value)} max={10}/>
       </div>
       <div className={`d-flex align-items-center ${styles.formCon}`}>
         <p>Bill: </p>
         <span className={styles.billSpan}>$:</span>
-        <NumberForm onChange={(e) => handleBill(e.target.value)} amount={table.bill}/>
+        <NumberForm onChange={(e) => handleBill(e.target.value)} amount={bill} max={undefined}/>
       </div>
-      <AppButton onClick={handleButton}>Update</AppButton>
+        <AppButton onClick={handleButton}>Update</AppButton>
     </form>
   );
 }

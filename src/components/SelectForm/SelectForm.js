@@ -8,6 +8,7 @@ const SelectForm = ({onChange, status}) => {
     <Form.Group className={styles.selectFormGroup} controlId="statusSelect">
       <Form.Select
         aria-label="Select table status"
+        value={status}
         onChange={onChange}
       >
         <option value="free">Free</option>
