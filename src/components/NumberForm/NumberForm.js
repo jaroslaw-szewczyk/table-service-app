@@ -2,15 +2,16 @@ import React from "react";
 import styles from './NumberForm.module.scss';
 import { Form } from "react-bootstrap";
 
-const NumberForm = ({amaunt}) =>{
+const NumberForm = ({onChange, amount}) =>{
   return (
     <Form.Group className={styles.formGroup} controlId="quantityInput">
       <Form.Control
         type="number"
         min="0"
         max="10"
-        defaultValue={amaunt}
+        defaultValue={amount}
         className={styles.inputSize}
+        onChange={onChange}
       />
     </Form.Group>
   );

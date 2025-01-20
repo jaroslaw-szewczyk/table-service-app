@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-const AppButton = ({ children}) => {
+const AppButton = ({onClick, children}) => {
   return(
-    <Button variant="primary">{children}</Button>
+    <Button variant="primary" onClick={onClick}>{children}</Button>
   );
 };
 
