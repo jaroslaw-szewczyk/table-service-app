@@ -19,8 +19,9 @@ const TableDetail = () => {
   const { tableId } = useParams();
   const [status, setStatus] = useState("");
   const [people,setPeople] = useState(0);
-  const [tableSpaces, setTableSpaces] = useState(0);
+  const [tableSpace, setTableSpace] = useState(0);
   const [bill, setBill] = useState(0);
+  const [isHidden, setIsHidden] = useState('');
 
   const table = tables.find((table) => table.id === parseInt(tableId));
 
@@ -31,9 +32,10 @@ const TableDetail = () => {
     }
     
     setPeople(table.people);
-    setTableSpaces(table.tableSpace);
+    setTableSpace(table.tableSpace);
     setStatus(table.status);
     setBill(table.bill);
+    setIsHidden(table.isHidden);
   },[table]);
 
   if (!table) {
@@ -41,6 +43,15 @@ const TableDetail = () => {
   }
 
   const handleStatusChange = (newStatus) => {
+    
+    if(newStatus === 'busy') {
+      setIsHidden(false);
+    } else {
+      setIsHidden(true);
+    }
+
+    console.log(isHidden);
+
     setStatus(newStatus);
   }
 
@@ -51,8 +62,8 @@ const TableDetail = () => {
      setPeople(0);
     } else if(number > 10){
       setPeople(10);
-    } else if (number > tableSpaces) {
-     setPeople(tableSpaces);
+    } else if (number > tableSpace) {
+     setPeople(tableSpace);
     } else {
      setPeople(number);
     }
@@ -62,11 +73,11 @@ const TableDetail = () => {
     const spaces = parseInt(newTableSpaces) || 0;
 
     if (spaces < 0) {
-      setTableSpaces(0);
+      setTableSpace(0);
     } else if (spaces > 10) {
-      setTableSpaces(10);
+      setTableSpace(10);
     } else {
-      setTableSpaces(spaces);
+      setTableSpace(spaces);
 
       if (people > spaces) {
        setPeople(spaces);
@@ -83,9 +94,9 @@ const TableDetail = () => {
     let order ={};
 
     if(status === 'cleanig' || status === 'free') {
-      order = { id: parseInt(tableId), status, people: 0, bill: 0 };
+      order = { id: parseInt(tableId), status, people: 0, bill: 0, isHidden };
     } else {
-      order = { id: parseInt(tableId), status, people, tableSpaces, bill };
+      order = { id: parseInt(tableId), status, people, tableSpace, bill, isHidden };
     }
     dispatch(updateTableRequest(order));
     navigate('/');
@@ -104,9 +115,9 @@ const TableDetail = () => {
         <p>People: </p>  
         <NumberForm amount={people} onChange={(e)=> handleChangePeopleAmount(e.target.value)} max={10}/>
         <span>/</span>
-        <NumberForm amount={tableSpaces} onChange={(e)=> handleTableSpacesChange(e.target.value)} max={10}/>
+        <NumberForm amount={tableSpace} onChange={(e)=> handleTableSpacesChange(e.target.value)} max={10}/>
       </div>
-      <div className={`d-flex align-items-center ${styles.formCon}`}>
+      <div className={`d-flex align-items-center ${styles.formCon} ${isHidden ? 'd-none' : ''}`}>
         <p>Bill: </p>
         <span className={styles.billSpan}>$:</span>
         <NumberForm onChange={(e) => handleBill(e.target.value)} amount={bill} max={undefined}/>

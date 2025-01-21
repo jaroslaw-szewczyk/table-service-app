@@ -3,7 +3,7 @@
 
 [DONE]2. Statusy, które kelner może ustawić to: “Free”, “Reserved”, “Busy” oraz “Cleaning”.
 
-3. Jeśli kelner zmieni status stolika na “Busy” to na podstronie powinna 
+[DONE]3. Jeśli kelner zmieni status stolika na “Busy” to na podstronie powinna 
     pojawiać się informacja o kwocie rachunku ze startową wartością zero. 
     Przy czym kelner powinien mieć możliwość jej edycji. Jeśli status jest inny niż “Busy”, 
     to ta informacja powinna być całkowicie ukrywana.

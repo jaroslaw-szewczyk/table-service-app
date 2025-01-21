@@ -5,9 +5,9 @@
       "number": 1,
       "status": "free",
       "people": 0,
-      "tableSpace": 2,
+      "tableSpace": 6,
       "bill": 0,
-      "tableSpaces": 2
+      "isHidden": true
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "people": 0,
       "tableSpace": 3,
       "bill": 0,
-      "tableSpaces": 3
+      "isHidden": true
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "people": 0,
       "tableSpace": 10,
       "bill": 0,
-      "tableSpaces": 10
+      "isHidden": true
     },
     {
       "id": 4,
@@ -33,7 +33,8 @@
       "status": "free",
       "people": 0,
       "tableSpace": 4,
-      "bill": 0
+      "bill": 0,
+      "isHidden": true
     }
   ]
 }
