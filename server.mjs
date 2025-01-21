@@ -8,7 +8,7 @@ const middlewares = jsonServer.defaults({
 const port = process.env.PORT || 3131;
 server.use(middlewares);
 server.use(jsonServer.rewriter({
-  '/*': '/$1'
+  '/tables/*': '/$1'
 }));
 
 server.use(router);
