@@ -1,0 +1,40 @@
+{
+  "tables": [
+    {
+      "id": 1,
+      "number": 1,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 6,
+      "bill": 0,
+      "isHidden": true
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 3,
+      "bill": 0,
+      "isHidden": true
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 10,
+      "bill": 0,
+      "isHidden": true
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "status": "free",
+      "people": 0,
+      "tableSpace": 4,
+      "bill": 0,
+      "isHidden": true
+    }
+  ]
+}
