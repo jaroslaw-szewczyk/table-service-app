@@ -102,8 +102,6 @@ const TableDetail = () => {
     navigate('/');
   };
 
-  
-
   return(
     <form >
       <h2>Table {table.number}</h2>
