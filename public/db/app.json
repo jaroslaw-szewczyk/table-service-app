@@ -3,11 +3,11 @@
     {
       "id": 1,
       "number": 1,
-      "status": "busy",
-      "people": 2,
+      "status": "free",
+      "people": 0,
       "tableSpace": 6,
-      "bill": 2,
-      "isHidden": false
+      "bill": 0,
+      "isHidden": true
     },
     {
       "id": 2,
