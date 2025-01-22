@@ -18,7 +18,7 @@ export const updateTable = (payload) => ({
 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch(API_URL)
+    fetch(`${API_URL}/tables`)
       .then(res => res.json())
       .then(tables => dispatch(updateTablesFromServer(tables)));
   }
@@ -34,7 +34,7 @@ export const updateTableRequest = (order) => {
       body: JSON.stringify(order),
     };
     
-    fetch(`${API_URL}/${order.id}`, options)
+    fetch(`${API_URL}/tables/${order.id}`, options)
       .then(() => dispatch(updateTable(order)));
   }
 }
